@@ -7,7 +7,10 @@
   },
   "options": {
     "increments": true,
-    "timestamps": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
     "comment": ""
   },
   "attributes": {
@@ -19,7 +22,7 @@
     },
     "auteur": {
       "model": "user",
-      "via": "article",
+      "via": "articles",
       "plugin": "users-permissions"
     }
   }

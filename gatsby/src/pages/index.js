@@ -9,15 +9,13 @@ const IndexPage = ({ data }) => (
     <ul>
       {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
-          <h2>
             <Link to={`/articles/${document.node.id}`}>{document.node.titre}</Link>
-          </h2>
-          <p>{document.node.contenu}</p>
         </li>
       ))}
     </ul>
-    <Link to="/page-2/">Go to page 2</Link>
-    <Link to="/articles/">Go to page articles</Link>
+    <p>
+      <Link to="/articles/">Voir tous les articles</Link>
+    </p>
   </Layout>
 )
 

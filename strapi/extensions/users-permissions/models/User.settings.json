@@ -56,8 +56,8 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "article": {
-      "model": "article",
+    "articles": {
+      "collection": "article",
       "via": "auteur"
     }
   }
