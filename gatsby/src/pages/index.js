@@ -17,6 +17,7 @@ const IndexPage = ({ data }) => (
       ))}
     </ul>
     <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/articles/">Go to page articles</Link>
   </Layout>
 )
 
