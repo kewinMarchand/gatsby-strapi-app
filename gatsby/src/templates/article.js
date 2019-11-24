@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from "../components/seo"
@@ -16,11 +17,17 @@ const formatDate = (date) => {
 }
 
 const ArticleTemplate = ({ data }) => {
-    const {titre, contenu, auteur, created_at, updated_at} = data.strapiArticle
+    const {titre, image, contenu, auteur, created_at, updated_at} = data.strapiArticle
     return (
         <Layout>
             <SEO title={titre} />
             <h1>{titre}</h1>
+            <Img 
+                fluid={image.childImageSharp.fluid}
+                alt={titre}
+                title={titre}
+                style={{marginBottom: 40}}
+            />
             <p>{contenu}</p>
             { null !== auteur &&
                 <p>Par&nbsp;
@@ -49,6 +56,16 @@ export const query = graphql`
   query ArticleTemplate($id: String!) {
     strapiArticle(id: {eq: $id}) {
         titre
+        image {
+            childImageSharp {
+                fixed(width: 600, height: 375) {
+                    ...GatsbyImageSharpFixed
+                }
+                fluid(maxWidth: 1400, maxHeight: 875) {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
         contenu
         auteur {
             username

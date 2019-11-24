@@ -2,9 +2,9 @@
 
 Ouvrir la console et cloner le projet :
 
-Dans la console, démarrer l'application Gatsby :
-
     git clone https://github.com/kewinMarchand/gatsby-strapi-app.git
+
+Dans la console, démarrer l'application Gatsby :
 
     cd gatsby-strapi-app/gatsby
 

@@ -24,6 +24,11 @@
       "model": "user",
       "via": "articles",
       "plugin": "users-permissions"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

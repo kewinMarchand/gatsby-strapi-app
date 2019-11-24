@@ -11,7 +11,7 @@ const Articles = ({ data }) => (
     <p>Tous nos articles</p>
     <ul>
         {data.allStrapiArticle.edges.map(document => {
-            const {id, titre, contenu, auteur, created_at, updated_at} = document.node
+            const {id, titre, contenu, auteur} = document.node
             return (
                 <li key={id}>
                     <h2>
