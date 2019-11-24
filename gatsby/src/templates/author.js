@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
@@ -61,12 +61,16 @@ const UserTemplate = ({ data }) => (
         <Grid container justify={'space-between'} style={{marginTop: 32}}>
             <Link to="/">
                 <Button size={'small'}>
-                    Retourner à l'accueil
+                    <Typography variant={'caption'}>
+                        Retourner à l'accueil
+                    </Typography>
                 </Button>
             </Link>
             <Link to="/authors/">
                 <Button size={'small'}>
-                    Voir tous les auteurs
+                    <Typography variant={'caption'}>
+                        Voir tous les auteurs
+                    </Typography>
                 </Button>
             </Link>
         </Grid>

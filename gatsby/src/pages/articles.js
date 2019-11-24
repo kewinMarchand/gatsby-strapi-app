@@ -56,7 +56,9 @@ const Articles = ({ data }) => (
         <Grid container justify={'center'}>
             <Link to="/">
                 <Button size={'small'}>
-                    Retourner à l'accueil
+                    <Typography variant={'caption'}>
+                        Retourner à l'accueil
+                    </Typography>
                 </Button>
             </Link>
         </Grid>

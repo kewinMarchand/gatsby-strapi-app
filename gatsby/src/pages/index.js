@@ -41,7 +41,9 @@ const IndexPage = ({ data }) => (
     <Grid container justify={'center'}>
       <Link to="/articles/">
         <Button size={'small'}>
-          Voir tous les articles
+          <Typography variant={'caption'}>
+            Voir tous les articles
+          </Typography>
         </Button>
       </Link>
     </Grid>

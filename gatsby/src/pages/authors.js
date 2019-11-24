@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -51,7 +51,9 @@ const Authors = ({ data }) => (
         <Grid container justify={'center'}>
             <Link to="/">
                 <Button size={'small'}>
-                    Retourner à l'accueil
+                    <Typography variant={'caption'}>
+                        Retourner à l'accueil
+                    </Typography>
                 </Button>
             </Link>
         </Grid>
