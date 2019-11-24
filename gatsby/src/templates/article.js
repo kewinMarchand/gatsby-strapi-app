@@ -20,14 +20,14 @@ const ArticleTemplate = ({ data }) => {
     const {titre, image, contenu, auteur, created_at, updated_at} = data.strapiArticle
     return (
         <Layout>
-            <SEO title={titre} />
-            <h1>{titre}</h1>
+            <SEO title={titre} /> 
             <Img 
                 fluid={image.childImageSharp.fluid}
                 alt={titre}
                 title={titre}
                 style={{marginBottom: 40}}
             />
+            <h1>{titre}</h1>
             <p>{contenu}</p>
             { null !== auteur &&
                 <p>Par&nbsp;
