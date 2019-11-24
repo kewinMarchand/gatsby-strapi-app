@@ -13,53 +13,61 @@ import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+    const data = useStaticQuery(graphql`
+        query SiteTitleQuery {
+            site {
+                siteMetadata {
+                    title,
+                    author
+                }
+            }
         }
-      }
-    }
-  `)
+    `)
 
-  return (
-      
-    <div
-		style={{
-			display: 'flex',
-			flexDirection: 'column',
-			minHeight: '100vh',
-		}}
-	>
-		<Header siteTitle={data.site.siteMetadata.title} />
-		<main
-			style={{
-				flexGrow: 1,
-				margin: `0 auto`,
-				maxWidth: 960,
-				padding: `0px 1.0875rem 1.45rem`,
-				paddingTop: 0,
-			}}
-		>
-        	{children}
-		</main>
-		<footer
-			style={{
-				background: `rebeccapurple`,
-				padding: 32,
-				textAlign: 'center',
-				width: '100%'
-			}}
-		>
-			<p style={{color: '#FFF', margin: 0}}>{new Date().getFullYear()}, Kewin Marchand</p>
-		</footer>
-    </div>
-  )
+    return (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',
+            }}
+        >
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <main
+                style={{
+                    flexGrow: 1,
+                    margin: `0 auto`,
+                    maxWidth: 960,
+                    padding: `0px 1.0875rem 1.45rem`,
+                    paddingTop: 0,
+                }}
+            >
+                {children}
+            </main>
+            <footer
+                style={{
+                    background: `rebeccapurple`,
+                    padding: 32,
+                    textAlign: 'center',
+                    width: '100%'
+                }}
+            >
+                <p 
+                    style={{
+                        color: '#FFF', 
+                        margin: 0
+                    }}
+                >
+                    { new Date().getFullYear() },&nbsp;
+                    {data.site.siteMetadata.author}
+                </p>
+            </footer>
+        </div>
+    )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
 }
 
 export default Layout

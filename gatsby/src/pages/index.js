@@ -4,29 +4,47 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 
+import { Button, Grid, Typography } from '@material-ui/core'
+
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>Bonjour à tous</h1>
-    <p>Voici la liste de nos articles</p>
-    <ul style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', listStyle: 'none'}}>
+    <Typography variant={'h1'}>
+      Accueil
+    </Typography>
+    <Typography gutterBottom>
+      Voici la liste de nos articles
+    </Typography>
+    <Grid container 
+      component={'ul'} 
+      spacing={4}
+      justify={'flex-start'}
+      style={{listStyle: 'none', marginTop: 32}}
+    >
       {data.allStrapiArticle.edges.map(document => (
-        <li key={document.node.id}>
+        <Grid item 
+          component={'li'} 
+          key={document.node.id}
+        >
           <Link to={`/articles/${document.node.id}`}>
             <Img 
-                  fixed={document.node.image.childImageSharp.fixed}
-                  alt={document.node.titre}
-                  title={document.node.titre}
-              />
-              <p>
-                {document.node.titre}
-              </p>
-            </Link>
-        </li>
+              fixed={document.node.image.childImageSharp.fixed}
+              alt={document.node.titre}
+              title={document.node.titre}
+            />
+            <Typography>
+              {document.node.titre}
+            </Typography>
+          </Link>
+        </Grid>
       ))}
-    </ul>
-    <p>
-      <Link to="/articles/">Voir tous les articles</Link>
-    </p>
+    </Grid>
+    <Grid container justify={'center'}>
+      <Link to="/articles/">
+        <Button size={'small'}>
+          Voir tous les articles
+        </Button>
+      </Link>
+    </Grid>
   </Layout>
 )
 

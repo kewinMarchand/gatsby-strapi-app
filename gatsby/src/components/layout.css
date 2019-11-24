@@ -41,6 +41,7 @@ template {
 }
 a {
   background-color: transparent;
+  text-decoration: none;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
@@ -63,6 +64,9 @@ dfn {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+}
+p {
+  font-size: 1rem;
 }
 mark {
   background-color: #ff0;

@@ -6,22 +6,22 @@ import SEO from "../components/seo"
 
 import { Button, Grid, Typography } from '@material-ui/core'
 
-const formatAuthor = (auteur) => {
+const formatAuthor = (username, id) => {
     return (
-        <Link to={`/authors/User_${auteur.id}`}>
-            {auteur.username}
+        <Link to={`/authors/${id}`}>
+            {username}
         </Link>
     )
 }
 
-const Articles = ({ data }) => (
+const Authors = ({ data }) => (
     <Layout>
         <SEO title="Articles" />
         <Typography variant={'h1'}>
-            Articles
+            Auteurs
         </Typography>
         <Typography gutterBottom>
-            Tous nos articles
+            Tous nos auteurs
         </Typography>
         <Grid container 
             component={'ul'} 
@@ -29,24 +29,19 @@ const Articles = ({ data }) => (
             direction={'column'}
             style={{listStyle: 'none', marginTop: 32}}
         >
-        {data.allStrapiArticle.edges.map(document => {
-            const {id, titre, contenu, auteur} = document.node
+        {data.allStrapiUser.edges.map(document => {
+            const {id, username} = document.node
             return (
                 <Grid item 
                     component={'li'} 
                     key={id}
                 >
-                    <Link to={`/articles/${id}`}>
-                        <Typography variant={'h2'} gutterBottom>
-                            {titre}
-                        </Typography>
-                        <Fragment>
-                            {contenu.slice(0, 152)}...
-                        </Fragment>
+                    <Link to={`/authors/${id}`}>
+                      
                     </Link>
-                    {null !== auteur &&
-                        <Typography component={'p'} variant={'caption'}>
-                            Par&nbsp;{ formatAuthor(auteur) }
+                    {null !== username &&
+                        <Typography component={'p'} variant={'h6'}>
+                            { formatAuthor(username, id) }
                         </Typography>
                     }
                 </Grid>
@@ -63,23 +58,16 @@ const Articles = ({ data }) => (
     </Layout>
 )
 
-export default Articles
+export default Authors
 
 export const pageQuery = graphql`  
-    query ArticlesQuery {
-        allStrapiArticle {
+    query AuthorsQuery {
+        allStrapiUser {
             edges {
                 node {
                     id
-                    titre
-                    contenu
-                    auteur {
-                        id
-                        username
-                        email
-                    }
-                    created_at
-                    updated_at
+                    username
+                    email
                 }
             }
         }

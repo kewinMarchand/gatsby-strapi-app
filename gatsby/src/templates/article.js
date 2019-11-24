@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
-import SEO from "../components/seo"
+import SEO from '../components/seo'
+
+import { Button, Grid, Typography } from '@material-ui/core'
 
 const isOneDayBetweenCreationAndUpdate = (created_at, updated_at) => {
     let UniversalCreatedAtDate = new Date(created_at).getTime()
@@ -16,36 +18,67 @@ const formatDate = (date) => {
     return new Date(date).toLocaleDateString()
 }
 
+const formatAuthor = (auteur) => {
+    return (
+        <Link to={`/authors/User_${auteur.id}`}>
+            {auteur.username}
+        </Link>
+    )
+}
+
 const ArticleTemplate = ({ data }) => {
     const {titre, image, contenu, auteur, created_at, updated_at} = data.strapiArticle
     return (
         <Layout>
-            <SEO title={titre} /> 
+            <SEO title={titre} />
+            <Typography
+                component={'p'}
+                variant={'caption'}
+                align={'right'}
+            >
+                Publié le { formatDate(created_at) }
+            </Typography>
             <Img 
                 fluid={image.childImageSharp.fluid}
                 alt={titre}
                 title={titre}
                 style={{marginBottom: 40}}
             />
-            <h1>{titre}</h1>
-            <p>{contenu}</p>
+            <Typography variant={'h1'} gutterBottom>
+                {titre}
+            </Typography>
+            <Fragment>
+                {null !== contenu && contenu}
+            </Fragment>
             { null !== auteur &&
-                <p>Par&nbsp;
-                    <a href={'mailto:' + auteur.email}>
-                        {auteur.username}
-                    </a>
-                </p>
+                <Typography component={'p'} variant={'caption'}>
+                    Par { formatAuthor(auteur) }
+                </Typography>
             }
-            <p>Publié le { formatDate(created_at) }</p>
             {isOneDayBetweenCreationAndUpdate(created_at, updated_at) && 
-                <p>Mis à jour le { formatDate(updated_at) }</p>
+                <Typography component={'p'} variant={'caption'}>
+                    Mis à jour le { formatDate(updated_at) }
+                </Typography>
             }
-            <Link to="/">
-                <p>Retourner à l'accueil</p>
-            </Link>
-            <Link to="/articles">
-                <p>Retourner à la liste des articles</p>
-            </Link> 
+            <Grid container 
+                justify={'space-between'}
+                style={{marginTop: 16}}
+            >
+                <Link to="/">
+                    <Button size={'small'}>
+                        <Typography variant={'caption'}>
+                            Retourner à l'accueil
+                        </Typography> 
+                    </Button>
+                </Link>
+                <Link to="/articles">
+                    <Button size={'small'}>
+                        <Typography variant={'caption'}>
+                            Retourner à la liste des articles
+                        </Typography>
+                    </Button>
+                </Link>
+            </Grid>
         </Layout>      
     )
 }
@@ -68,6 +101,7 @@ export const query = graphql`
         }
         contenu
         auteur {
+            id
             username
             email
         }
