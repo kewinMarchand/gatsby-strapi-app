@@ -3,8 +3,9 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import GoHomeCta from '../components/buttons/GoHomeCta'
 
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const formatAuthor = (auteur) => {
     return (
@@ -53,14 +54,11 @@ const Articles = ({ data }) => (
             )
         })}
         </Grid>
-        <Grid container justify={'center'}>
-            <Link to="/">
-                <Button size={'small'}>
-                    <Typography variant={'caption'}>
-                        Retourner à l'accueil
-                    </Typography>
-                </Button>
-            </Link>
+        <Grid container 
+            justify={'center'}
+            style={{marginTop: 32}}
+        >
+            <GoHomeCta/>
         </Grid>
     </Layout>
 )

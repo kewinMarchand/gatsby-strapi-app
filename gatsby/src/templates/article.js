@@ -4,8 +4,10 @@ import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import GoHomeCta from '../components/buttons/GoHomeCta'
+import GoPostsCta from '../components/buttons/GoPostsCta'
 
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const isOneDayBetweenCreationAndUpdate = (created_at, updated_at) => {
     let UniversalCreatedAtDate = new Date(created_at).getTime()
@@ -62,22 +64,10 @@ const ArticleTemplate = ({ data }) => {
             }
             <Grid container 
                 justify={'space-between'}
-                style={{marginTop: 16}}
+                style={{marginTop: 32}}
             >
-                <Link to="/">
-                    <Button size={'small'}>
-                        <Typography variant={'caption'}>
-                            Retourner à l'accueil
-                        </Typography> 
-                    </Button>
-                </Link>
-                <Link to="/articles">
-                    <Button size={'small'}>
-                        <Typography variant={'caption'}>
-                            Retourner à la liste des articles
-                        </Typography>
-                    </Button>
-                </Link>
+                <GoHomeCta/>
+                <GoPostsCta/>
             </Grid>
         </Layout>      
     )

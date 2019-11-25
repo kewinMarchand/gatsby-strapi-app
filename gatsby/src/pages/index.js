@@ -3,8 +3,9 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from '../components/layout'
+import GoPostsCta from '../components/buttons/GoPostsCta'
 
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -38,14 +39,11 @@ const IndexPage = ({ data }) => (
         </Grid>
       ))}
     </Grid>
-    <Grid container justify={'center'}>
-      <Link to="/articles/">
-        <Button size={'small'}>
-          <Typography variant={'caption'}>
-            Voir tous les articles
-          </Typography>
-        </Button>
-      </Link>
+    <Grid container 
+      justify={'center'}
+      style={{marginTop: 32}}
+    >
+      <GoPostsCta/>
     </Grid>
   </Layout>
 )
