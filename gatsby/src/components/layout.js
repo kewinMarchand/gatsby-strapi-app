@@ -9,8 +9,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
+import Theme from '../Theme'
 import Header from "./header"
 import "./layout.css"
+
+import { CssBaseline, Grid, ThemeProvider, Typography } from '@material-ui/core'
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -25,44 +28,42 @@ const Layout = ({ children }) => {
     `)
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '100vh',
-            }}
+        <Grid container
+            direction={'column'}
+            style={{minHeight: '100vh'}}
         >
-            <Header siteTitle={data.site.siteMetadata.title} />
-            <main
-                style={{
-                    flexGrow: 1,
-                    margin: `0 auto`,
-                    maxWidth: 960,
-                    padding: `0px 1.0875rem 1.45rem`,
-                    paddingTop: 0,
-                }}
-            >
-                {children}
-            </main>
-            <footer
-                style={{
-                    background: `rebeccapurple`,
-                    padding: 32,
-                    textAlign: 'center',
-                    width: '100%'
-                }}
-            >
-                <p 
+            <ThemeProvider theme={Theme}>
+                <CssBaseline/>
+                <Header siteTitle={data.site.siteMetadata.title} />
+                <main
                     style={{
-                        color: '#FFF', 
-                        margin: 0
+                        flexGrow: 1,
+                        margin: `0 auto`,
+                        maxWidth: 960,
+                        padding: `0px 1.0875rem 1.45rem`,
+                        paddingTop: 0,
                     }}
                 >
-                    { new Date().getFullYear() },&nbsp;
-                    {data.site.siteMetadata.author}
-                </p>
-            </footer>
-        </div>
+                    {children}
+                </main>
+                <Grid container
+                    component={'footer'}
+                    justify={'center'}
+                    style={{
+                        background: `rebeccapurple`,
+                        padding: 32,
+                        width: '100%'
+                    }}
+                >
+                    <Typography
+                        style={{color: '#FFF'}}
+                    >
+                        { new Date().getFullYear() },&nbsp;
+                        { data.site.siteMetadata.author }
+                    </Typography>
+                </Grid>
+            </ThemeProvider>
+        </Grid>
     )
 }
 
